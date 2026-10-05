@@ -41,3 +41,4 @@ ffmpeg -y -v error -ss 0.2 -i $O/hero.mp4 -frames:v 1 -q:v 3 $O/hero-poster.jpg
 ffmpeg -y -v error -i $S -vf scale=1280:-2 -c:v libx264 -crf 27 -preset slow -c:a aac -b:a 96k -movflags +faststart $O/film.mp4
 ffmpeg -y -v error -ss 114.4 -i $S -frames:v 1 -vf scale=1280:-2 -q:v 3 $O/film-poster.jpg
 cwebp -quiet -q 82 -resize 700 0 $R/Baynes-Steak-Pie-Large-768x512.png -o $O/products/steak-pie.webp
+python3 -c "from PIL import Image; Image.open(\"$R/Baynes-App_Web-Banner_Desktop-v1.jpg\").crop((1470,30,2300,960)).save(\"_scrape/phone.png\")" && cwebp -quiet -q 84 -resize 760 0 _scrape/phone.png -o $O/app-phone.webp

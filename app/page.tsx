@@ -8,7 +8,7 @@ import { Products } from "@/components/home/Products";
 import { ShopFinder } from "@/components/home/ShopFinder";
 import { Stamps } from "@/components/home/Stamps";
 import { Button, Icon } from "@/components/ui";
-import { app, bakery, delivery, intro, legal, nav, people, seventy, shopOnline, signature, socials, story, trust } from "@/lib/content";
+import { app, bakery, delivery, intro, legal, nav, people, seventy, shopOnline, signature, socials, story } from "@/lib/content";
 
 /* Homepage. Look and motion after theolly.it (round-logo intro, a circle that opens into the first film, red
    statement blocks whose words fill in on scroll, thin red connector rules, a giant serif word) with Bernice
@@ -24,6 +24,26 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
+
+        {/* The app, straight after the hero: the live banner's phone in natural colour on its own warm backdrop, the
+            loyalty stamps pressing in beside the copy, and the two store buttons. */}
+        <section className="app" id="app" aria-labelledby="app-title">
+          <div className="wrap">
+            <div className="app-panel">
+              <div className="app-copy">
+                <p className="label" data-reveal>{app.lead}</p>
+                <h2 id="app-title" className="h-display" data-reveal>{app.title}</h2>
+                <p data-reveal>{app.text}</p>
+                <div data-reveal><Stamps label={app.stamps} note={app.stampsNote} /></div>
+                <div className="app-stores" data-reveal>
+                  <p className="app-download">{app.download}</p>
+                  <ul>{app.stores.map((st) => <li key={st.name}><a href={st.href} className="store-btn"><Icon name={st.icon} /><span><small>{st.label}</small>{st.name}</span></a></li>)}</ul>
+                </div>
+              </div>
+              <figure className="app-phone"><img src="/media/app-phone.webp" alt="The Bayne’s app on a phone: a warm welcome from your favourite baker, Baynesy" data-parallax="8" /></figure>
+            </div>
+          </div>
+        </section>
 
         {/* The Olly's red statement: a connector rule drops in, the words fill in as they pass, three columns follow. */}
         <section className="statement" id="story-intro" aria-label="About Bayne’s">
@@ -100,23 +120,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Our Story timeline: a red rule draws down the middle, chapters alternate either side. */}
+        {/* Our Story: four chapters in a row along a red rule that draws across, The Olly's thin connectors. */}
         <section className="story" id="story" aria-labelledby="story-title">
           <div className="wrap">
-            <div className="section-head section-head-center">
+            <div className="story-head">
               <p className="label label-red" data-reveal>{story.label}</p>
               <h2 id="story-title" className="h-display" data-reveal>{story.title}</h2>
             </div>
             <ol className="timeline">
-              <span className="timeline-rule" data-draw aria-hidden="true" />
-              {story.chapters.map((c, i) => (
-                <li key={c.year} className={`chapter${i % 2 ? " chapter-flip" : ""}`}>
-                  <figure className="chapter-photo" data-reveal="60">{c.image && <img src={c.image} alt={c.alt} loading="lazy" />}</figure>
+              <span className="timeline-rule" data-draw="x" aria-hidden="true" />
+              {story.chapters.map((c) => (
+                <li key={c.year} className="chapter" data-reveal>
                   <span className="chapter-dot" aria-hidden="true" />
-                  <div className="chapter-copy" data-reveal>
-                    <h3 className="chapter-year">{c.year}</h3>
-                    {c.text.map((t) => <p key={t.slice(0, 24)}>{t}</p>)}
-                  </div>
+                  <h3 className="chapter-year">{c.year}</h3>
+                  <figure className="chapter-photo">{c.image && <img src={c.image} alt={c.alt} loading="lazy" />}</figure>
+                  <p>{c.text[0]}</p>
                 </li>
               ))}
             </ol>
@@ -139,27 +157,6 @@ export default function Home() {
 
         <ShopFinder />
 
-        {/* The app: copy on the left, an illustrated stamp card on the right. */}
-        <section className="app" id="app" aria-labelledby="app-title">
-          <div className="wrap app-grid">
-            <div className="app-copy">
-              <p className="label label-red" data-reveal>{app.lead}</p>
-              <h2 id="app-title" className="h-display" data-reveal>{app.title}</h2>
-              <p className="lead" data-reveal>{app.text}</p>
-              <dl className="app-perks" data-reveal data-stagger>
-                <div><dt>{app.spend.title}</dt><dd>{app.spend.text}</dd>
-                  <dd><ul className="chips">{app.rewards.map((r) => <li key={r}>{r}</li>)}</ul></dd></div>
-                <div><dt>{app.share.title}</dt><dd>{app.share.text}</dd></div>
-              </dl>
-              <div data-reveal><Button href={app.cta.href} tone="red">{app.cta.label}</Button></div>
-            </div>
-            <div className="app-card">
-              <Stamps label={app.stamps} />
-              <p className="app-note">{app.stampsNote}</p>
-            </div>
-          </div>
-        </section>
-
         {/* People: the careers "Our Purpose" line filling on scroll over a strip of team photographs, then the values. */}
         <section className="people" id="careers" aria-labelledby="people-title">
           <div className="wrap">
@@ -178,19 +175,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="trust" aria-labelledby="trust-title">
-          <div className="wrap trust-grid">
-            <div>
-              <h2 id="trust-title" className="h-display" data-reveal>{trust.title}</h2>
-              <p className="lead" data-reveal>{trust.text}</p>
-            </div>
-            <div>
-              <p data-reveal>{trust.lead}</p>
-              <ul className="chips chips-line" data-reveal data-stagger>{trust.areas.map((a) => <li key={a}>{a}</li>)}</ul>
-              <div data-reveal><Button href={trust.cta.href} tone="line">{trust.cta.label}</Button></div>
-            </div>
-          </div>
-        </section>
       </main>
 
       <footer className="site-footer">

@@ -172,14 +172,15 @@ export const finder = {
 
 export const app = {
   title: "Our tasty new app with loyalty rewards baked in",
-  cta: { label: "Download the app", href: "https://app.baynes.co.uk/" },
+  download: "Download today!",
+  stores: [
+    { label: "Download on the", name: "App Store", icon: "apple", href: "https://app.baynes.co.uk/" },
+    { label: "Get it on", name: "Google Play", icon: "googleplay", href: "https://app.baynes.co.uk/" },
+ ] as const,
   lead: "Enjoy more with the Baynes App",
   text: "Make every visit to Baynes even more rewarding. With the Baynes app, you can collect stamps, redeem delicious freebies, and skip the queue with Click & Collect. Order ahead through the app and pick up from selected shops.",
   stamps: "Collect 6 stamps and receive a FREE hot drink",
   stampsNote: "Terms and conditions apply.",
-  spend: { title: "Spend & Savor:", text: "Spend over £3 and collect a stamp. Hit 6 stamps and treat yourself to a free product from our reward list:" },
-  rewards: ["Pork Sausage Roll", "Beef Sausage Roll", "Iced Doughring (White or Pink)", "Yum Yum", "Empire Biscuit", "Custard Fudge Doughnut", "French Cake"],
-  share: { title: "Plus, sharing is sweet:", text: "Refer a friend and you’ll both unlock a little treat, because good taste deserves good company." },
 };
 
 // careers.baynes.co.uk "Our Purpose" panel, About Us values.
@@ -201,14 +202,6 @@ export const people = {
     { src: "/media/people-5.webp", alt: "Bayne’s bakers with trays of rolls" },
     { src: "/media/people-6.webp", alt: "A Bayne’s driver with a tray of morning rolls" },
   ],
-};
-
-export const trust = {
-  title: "Bayne’s Charitable Trust",
-  text: "The Bayne’s charitable trust was set up in 2020.",
-  lead: "We would like to help charities that benefit our local communities in the following areas:",
-  areas: ["relief of poverty", "advancement of education", "advancement of health", "community development", "disabilities", "hardship"],
-  cta: { label: "Email the charity team", href: live("/charitable-trust/") },
 };
 
 export const socials = [
