@@ -34,13 +34,15 @@ export default function Home() {
                 <p className="label" data-reveal>{app.lead}</p>
                 <h2 id="app-title" className="h-display" data-reveal>{app.title}</h2>
                 <p data-reveal>{app.text}</p>
-                <div data-reveal><Stamps label={app.stamps} note={app.stampsNote} /></div>
                 <div className="app-stores" data-reveal>
                   <p className="app-download">{app.download}</p>
                   <ul>{app.stores.map((st) => <li key={st.name}><a href={st.href} className="store-btn"><Icon name={st.icon} /><span><small>{st.label}</small>{st.name}</span></a></li>)}</ul>
                 </div>
               </div>
-              <figure className="app-phone"><img src="/media/app-phone.webp" alt="The Bayne’s app on a phone: a warm welcome from your favourite baker, Baynesy" data-parallax="8" /></figure>
+              <div className="app-visual">
+                <figure className="app-phone"><img src="/media/app-phone.webp" alt="The Bayne’s app on a phone: a warm welcome from your favourite baker, Baynesy" /></figure>
+                <Stamps label={app.stamps} note={app.stampsNote} />
+              </div>
             </div>
           </div>
         </section>
